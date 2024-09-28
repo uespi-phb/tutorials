@@ -131,7 +131,22 @@ Onde:
 - **-b 4096** define o tamanho da chave (4096 bits é um bom padrão para segurança).
 - **-C "seu-email@example.com"** adiciona um comentário à chave, geralmente o seu e-mail para referência.
 
-##### Passo 3: Adicionar a chave SSH ao GitHub
+##### Passo 3: Adicionar sua chave SSH ao agente SSH
+O próximo passo é adicionar sua nova chave SSH ao agente SSH, que gerencia suas chaves privadas e facilita o processo de autenticação:
+
+1. Inicie o agente SSH, se ele não estiver em execução:
+
+    ~~~bash
+    eval "$(ssh-agent -s)"
+    ~~~
+
+2. Adicione sua chave SSH ao agente:
+
+    ~~~bash
+    ssh-add ~/.ssh/id_rsa
+    ~~~
+
+##### Passo 4: Adicionar a chave SSH ao GitHub
 Agora que você gerou a chave SSH, o próximo passo é vinculá-la à sua conta no GitHub.
 
 1. Copie o conteúdo da chave pública SSH para o clipboard. Isso pode ser feito com o comando:
@@ -198,7 +213,7 @@ Primeiro, é necessário criar um novo repositório no GitHub. Para isso, siga e
 Agora, no terminal ou linha de comando, vá até o diretório do seu repositório Git local e vincule o repositório GitHub recém-criado como o repositório remoto.
 
 ~~~bash
-git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+git remote add origin git@github.com:seu-usuario/seu-repositorio.git
 ~~~
 
 Esse comando define um nome (geralmente `origin`) para o repositório remoto. Substitua `seu-usuario` e `seu-repositorio` pelo seu nome de usuário no GitHub e o nome do repositório que você acabou de criar.
