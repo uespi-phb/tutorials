@@ -77,6 +77,153 @@ Edite o conteúdo do arquivo de configuração do Git. Este arquivo será gravad
 	undo = !git reset HEAD~
 ~~~
 
+### Cria e Configurar uma Conta no GitHub com Chave SSH
+
+<div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
+Este procedimento apenas é necessário se você ainda não possua uma conta no GitHub. Caso já possuam uma conta, vá para o tópico seguinte: <a href="#vincular-repositório-local-ao-github">Vincular Repositório Local ao GitHub</a>
+</div>
+
+O GitHub é uma das plataformas mais populares para hospedagem de código-fonte e colaboração em projetos de software, especialmente quando usamos Git como sistema de controle de versão. Uma prática comum e recomendada é o uso de autenticação por chave SSH para se conectar ao GitHub, garantindo maior segurança ao gerenciar repositórios. 
+
+Este tutorial guiará você na criação de uma conta no GitHub e na configuração de uma chave SSH para autenticação.
+
+#### 1. Criar uma Conta no GitHub
+
+##### Passo 1: Acesse o site do GitHub
+- Navegue para o site do GitHub em [https://github.com](https://github.com).
+- Clique em **Sign up** (Cadastrar-se) no canto superior direito da página.
+
+##### Passo 2: Preencha as Informações
+- **Username (Nome de usuário)**: Escolha um nome de usuário único que será o seu identificador público no GitHub.
+- **Email address (Endereço de e-mail)**: Forneça um endereço de e-mail válido que será usado para associar sua conta e para notificações.
+- **Password (Senha)**: Crie uma senha forte para proteger sua conta.
+
+Após preencher essas informações, clique no botão para continuar e siga as etapas de verificação e confirmação de conta.
+
+##### Passo 3: Personalização e Preferências
+O GitHub pode solicitar algumas preferências, como o seu nível de experiência com Git ou GitHub. Isso ajuda a personalizar sua experiência na plataforma. Depois de completar essas etapas, você terá acesso à sua nova conta.
+
+##### Passo 4: Verificação de E-mail
+Verifique a caixa de entrada do seu e-mail para uma mensagem de confirmação do GitHub. Clique no link de confirmação para ativar sua conta.
+
+#### 2. Gerar e Configurar uma Chave SSH para Autenticação
+
+O SSH (Secure Shell) é um protocolo que fornece uma maneira segura de acessar e manipular repositórios remotos. Ao invés de fornecer suas credenciais (nome de usuário e senha) cada vez que interage com o GitHub, você pode configurar uma chave SSH para autenticação automática e segura.
+
+##### Passo 1: Verifique você já possui uma chave SSH
+Antes de gerar uma nova chave SSH, verifique se já existe uma chave gerada no seu sistema. No terminal execute o comando:
+
+~~~bash
+ls -al ~/.ssh
+~~~
+
+Se esse diretório contiver arquivos como `id_rsa` e `id_rsa.pub`, você já possui uma chave SSH gerada. Caso contrário, siga os próximos passos para criar uma nova.
+
+##### Passo 2: Gerar uma nova chave SSH
+Se não houver uma chave SSH, ou se você deseja criar uma nova, execute o comando a seguir no terminal para gerar uma nova chave SSH:
+
+~~~bash
+ssh-keygen -t rsa -b 4096 -C "fulano@email.com"
+~~~
+
+Onde:
+- **-t rsa** especifica o algoritmo de criptografia (RSA).
+- **-b 4096** define o tamanho da chave (4096 bits é um bom padrão para segurança).
+- **-C "seu-email@example.com"** adiciona um comentário à chave, geralmente o seu e-mail para referência.
+
+##### Passo 3: Adicionar a chave SSH ao GitHub
+Agora que você gerou a chave SSH, o próximo passo é vinculá-la à sua conta no GitHub.
+
+1. Copie o conteúdo da chave pública SSH para o clipboard. Isso pode ser feito com o comando:
+
+    ~~~bash
+    cat ~/.ssh/id_rsa.pub
+    ~~~
+
+   Copie a saída do comando, que será algo como:
+
+    ~~~
+    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs... fulano@email.com
+    ~~~
+
+2. Acesse o GitHub e faça login na sua conta.
+3. No canto superior direito, clique na sua foto de perfil e vá até **Settings** (Configurações).
+4. No menu lateral, clique em **SSH and GPG keys**.
+5. Clique em **New SSH Key** (Nova chave SSH).
+6. No campo "Title" (Título), você pode dar um nome para a chave (por exemplo, "Meu Laptop"). No campo "Key" (Chave), cole a chave SSH copiada.
+7. Clique em **Add SSH Key** (Adicionar chave SSH).
+
+##### Passo 4: Testando a conexão SSH
+Após adicionar a chave SSH, você pode testar a conexão com o GitHub para garantir que tudo foi configurado corretamente. No terminal, execute o seguinte comando:
+
+~~~bash
+ssh -T git@github.com
+~~~
+
+Se tudo estiver correto, você verá uma mensagem semelhante a:
+
+~~~
+Hi seu-usuario! You've successfully authenticated, but GitHub does not provide shell access.
+~~~
+
+Isso significa que a autenticação foi bem-sucedida e você pode começar a interagir com seus repositórios GitHub via SSH.
+
+### Vincular Repositório Local ao GitHub
+
+Vincular um repositório Git local ao GitHub é uma prática comum e essencial no desenvolvimento de software, especialmente em ambientes colaborativos. Essa vinculação permite que o repositório local, onde o desenvolvedor mantém o histórico de desenvolvimento do código, se conecte a um repositório remoto no GitHub, facilitando o compartilhamento, a colaboração e o backup do projeto.
+
+#### Por que vincular um repositório Git local ao GitHub?
+
+1. **Colaboração em equipe**: Ao hospedar o repositório no GitHub, outros desenvolvedores podem clonar o repositório, propor alterações e colaborar no projeto por meio de pull requests e revisões de código.
+   
+2. **Backup seguro**: Manter o código apenas em um repositório local implica em risco de perda de dados. Vinculando o repositório ao GitHub, você garante que o código está armazenado em um ambiente seguro e acessível na nuvem.
+
+3. **Acesso remoto**: Com o repositório no GitHub, você pode acessar o código de qualquer lugar, em qualquer dispositivo, facilitando o trabalho remoto e a continuidade do desenvolvimento fora do ambiente de trabalho habitual.
+
+4. **Integrações e automação**: GitHub oferece uma série de integrações, como ferramentas de CI/CD (Integração Contínua e Entrega Contínua), além de outras funcionalidades para automação de testes, deploys e controle de qualidade.
+
+#### Como vincular um repositório Git local ao GitHub?
+
+A vinculação de um repositório Git local a um repositório remoto no GitHub pode ser feita em alguns passos simples. Supondo que você já tenha um repositório Git local configurado, os passos são os seguintes:
+
+##### 1. Crie um repositório no GitHub
+Primeiro, é necessário criar um novo repositório no GitHub. Para isso, siga estes passos:
+
+- Acesse sua conta no GitHub.
+- Clique no botão "New" (Novo) para criar um novo repositório.
+- Preencha os campos como o nome do repositório, uma descrição (opcional) e escolha se ele será público ou privado.
+- Não adicione nenhum arquivo (como README ou `.gitignore`) ao criar o repositório, pois o repositório local já tem um histórico Git. Apenas crie o repositório vazio.
+
+##### 2. Vincule o repositório remoto ao repositório local
+Agora, no terminal ou linha de comando, vá até o diretório do seu repositório Git local e vincule o repositório GitHub recém-criado como o repositório remoto.
+
+~~~bash
+git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+~~~
+
+Esse comando define um nome (geralmente `origin`) para o repositório remoto. Substitua `seu-usuario` e `seu-repositorio` pelo seu nome de usuário no GitHub e o nome do repositório que você acabou de criar.
+
+##### 3. Faça o envio (push) das alterações locais para o GitHub
+Após adicionar o repositório remoto, é necessário enviar (push) as alterações do repositório local para o GitHub. Para isso, execute o seguinte comando:
+
+~~~bash
+git push -u origin master
+~~~
+
+Aqui, `master` se refere à branch principal do repositório (que pode ser chamada de `main`, dependendo da configuração). O comando `-u` cria um vínculo entre sua branch local e a branch remota, facilitando futuros envios de alterações.
+
+#### 4. Autenticação
+Dependendo da configuração do GitHub, você poderá ser solicitado a inserir suas credenciais (nome de usuário e senha) ou fornecer um token de autenticação pessoal (Personal Access Token). A autenticação garante que apenas usuários autorizados possam enviar alterações para o repositório.
+
+#### 5. Verifique se a vinculação foi bem-sucedida
+Para verificar se o repositório remoto foi adicionado corretamente, você pode usar o comando:
+
+~~~bash
+git remote -v
+~~~
+
+Esse comando listará os repositórios remotos configurados, juntamente com suas URLs. Se tudo estiver correto, você verá o repositório remoto `origin` listado.
+
 ### Conventional Commits
 
 A padronização de procedimentos é um elemento essencial para o trabalho em equipe. Desta forma, a padronização de código, documentação e mesmo de mensagens de commit deve ser considerada em um ambiente de desenvolvimento profissional.
