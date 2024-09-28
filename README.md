@@ -10,8 +10,8 @@ Todos os procedimentos de configuração <u>dependem das variáveis de ambiente<
 </div>
 
 - [Variáveis de Ambiente (obrigatório)](common/env.md)
-- [Git](common/git.md) 
 - [Visual Studio Code](common/vscode.md)
+- [Git](common/git.md) 
 - [Ambiente Backend](backend/backend.md)
 - [Ambiente Frontend](frontend/frontend.md)
 
