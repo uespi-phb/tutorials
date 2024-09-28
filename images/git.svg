@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   style="color:#ffffff"
+   width="13.167197"
+   height="13.167197"
+   fill="currentColor"
+   class="bi bi-git"
+   viewBox="0 0 13.167197 13.167197"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="git-white.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="9.3249707"
+     inkscape:cx="8.2037791"
+     inkscape:cy="19.517488"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <g
+     id="g1559"
+     transform="matrix(0.60521706,0,0,0.60521706,1.741382,1.7418622)">
+    <circle
+       style="fill:#1b7eda;fill-opacity:1;stroke-width:0.806865"
+       id="path869"
+       cx="8.0007935"
+       cy="8"
+       r="10.878078" />
+    <path
+       d="M 15.698,7.287 8.712,0.302 a 1.03,1.03 0 0 0 -1.457,0 l -1.45,1.45 1.84,1.84 a 1.223,1.223 0 0 1 1.55,1.56 l 1.773,1.774 A 1.224,1.224 0 0 1 12.235,8.951 1.226,1.226 0 0 1 10.233,7.617 L 8.58,5.963 v 4.353 A 1.226,1.226 0 1 1 7.572,10.28 V 5.887 A 1.226,1.226 0 0 1 6.906,4.279 L 5.093,2.465 0.303,7.255 a 1.03,1.03 0 0 0 0,1.457 l 6.986,6.986 a 1.03,1.03 0 0 0 1.457,0 l 6.953,-6.953 a 1.031,1.031 0 0 0 0,-1.457"
+       fill="#ffffff"
+       id="path2" />
+  </g>
+</svg>

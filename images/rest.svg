@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="128pt"
+   height="128pt"
+   viewBox="0 0 128 128"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg4"
+   sodipodi:docname="rest.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:export-filename="/home/eyder/workspace/mies/documents/images/rest.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8">
+    <rect
+       x="202.1232"
+       y="29.911926"
+       width="125.16731"
+       height="52.897121"
+       id="rect36059" />
+    <rect
+       x="191.81346"
+       y="126.06225"
+       width="128.2336"
+       height="79.045959"
+       id="rect18095" />
+    <rect
+       x="55.413063"
+       y="132.59824"
+       width="147.98906"
+       height="62.897266"
+       id="rect8205" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="pt"
+     showgrid="false"
+     inkscape:zoom="2.4726562"
+     inkscape:cx="121.93365"
+     inkscape:cy="89.579779"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="1107"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     transform="matrix(0.1,0,0,-0.1,-4.380164,250.06602)"
+     fill="#000000"
+     stroke="none"
+     id="g2" />
+  <text
+     xml:space="preserve"
+     transform="matrix(0.75,0,0,0.75,-4.380164,-5.9339839)"
+     id="text8203"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8205);fill:#000000;fill-opacity:1;stroke:none"><tspan
+       x="55.412109"
+       y="230.88672"
+       id="tspan65432"><tspan
+         dx="0 25.449219 27.792969 25.273438 25.390625 24.433594"
+         id="tspan65430">{REST}</tspan></tspan></text>
+  <circle
+     style="fill:#0050c3;fill-opacity:1;fill-rule:evenodd;stroke-width:0.642476"
+     id="path56"
+     cx="63.194294"
+     cy="64.089401"
+     r="55.152714" />
+  <text
+     xml:space="preserve"
+     transform="matrix(0.74269265,0,0,0.84178328,-132.0915,17.579362)"
+     id="text36057"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect36059);fill:#000000;fill-opacity:1;stroke:none"><tspan
+       x="202.12305"
+       y="67.211797"
+       id="tspan65436"><tspan
+         style="font-weight:500;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Medium';fill:#ffffff"
+         id="tspan65434">{REST}</tspan></tspan></text>
+</svg>
