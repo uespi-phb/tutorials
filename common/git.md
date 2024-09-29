@@ -34,7 +34,7 @@ Este tutorial assume que você está configurando o repositório de um projeto q
 Os caminhos (paths) para os repositórios do projeto estão definidos nas seguintes variáveis de ambiente configuradas a partir das instruções disponíveis na seção [Variáveis de Ambiente](../common/env.md).
 
 ~~~bash
-DEV_BASE     # Pasta base do projeto
+DEV_ROOT     # Pasta base do projeto
 DEV_FRONT    # Repositório do código front-end do projeto
 DEV_BACK     # Repositório do código back-end do projeto
 DEV_DOCS     # Repositório da documentação do projeto
@@ -44,9 +44,9 @@ DEV_UTIL     # Repositório do código dos utilitários do projeto
 Por exemplo, para configurar o Git no repositório raiz do projeto:
 ~~~bash
 # Criar pasta do projeto
-mkdir -p $DEV_BASE
+mkdir -p $DEV_ROOT
 # Entrar na pasta do projeto
-cd $DEV_BASE
+cd $DEV_ROOT
 
 # Definir "main" como nome da branch principal
 git config --global init.defaultBranch main
@@ -375,7 +375,7 @@ chmod +x .git/hooks/commit-msg
 Teste se o o procedimento acima está realmente bloqueando _commits_ inválidos:
 
 ~~~bash
-cd $DEV_BASE
+cd $DEV_ROOT
 
 # Erro: mensagem sem tipo
 touch file1.txt

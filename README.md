@@ -9,7 +9,7 @@ Este documento contém as instruções técnicas necessárias para a configuraç
 Todos os procedimentos de configuração <u>dependem das variáveis de ambiente</u>. Portanto, sua configuração deve ser realizada antes de todas as outras etapas.
 </div>
 
-- [Variáveis de Ambiente (obrigatório)](common/env.md)
+- [Variáveis de Ambiente](common/env.md)
 - [Visual Studio Code](common/vscode.md)
 - [Git](common/git.md) 
 - [Ambiente Backend](backend/backend.md)

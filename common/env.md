@@ -18,14 +18,8 @@ Edite o arquivo **~/.devrc** e defina as seguintes variáveis de ambiente em seu
 ~~~bash
 # Diretório base para as ferramentas de desenvolvimento (Android, Flutter, Node.JS, etc)
 export DEV_BASE="/data/dev"
-
-# Localização dos repositórios do projeto
-# Substitua PROJECT_NAME pelo nome do projeto que deseja configurar
-export DEV_BASE="$HOME/workspace/PROJECT_NAME"
-export DEV_BACK="$DEV_BASE/backend"
-export DEV_FRONT="$DEV_BASE/frontend"
-export DEV_DOCS="$DEV_BASE/documents"
-export DEV_UTIL="$DEV_BASE/utils"
+# Localização dos repositórios de projetos
+export DEV_ROOT="$HOME/workspace"
 ~~~
 
 Acrescente o seguinte comando no final do arquivo **~/.bashrc**
@@ -33,9 +27,14 @@ Acrescente o seguinte comando no final do arquivo **~/.bashrc**
 source ~/.devrc
 ~~~
 
-Em seguida execute o comando
+Em seguida execute os comandos
 ~~~
 source ~/.bashrc
+
+sudo mkdir -p $DEV_BASE
+sudo chown $USER $DEV_BASE
+
+mkdir -p $DEV_ROOT
 ~~~
 
 Instale os seguintes pacotes do Ubuntu com ferramentas para a configuração do ambiente:
