@@ -26,22 +26,25 @@ sudo apt install git
 ### Configuração local do repositório
 
 <div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
-Os procedimentos de configuração descritos a seguir são específicos para cada repositório Git. Portanto, devem ser executados nos repositórios <u>de cada projeto</u>.
+Os procedimentos de configuração do Git descritos a seguir são locais, isto é, <u>são específicos para cada projeto</u>. Desta forma, precisam ser executados em cada novo projeto criado.
 </div>
 
 Os caminhos (paths) para a pasta raiz de projetos e das ferramentas de desenvolvimento estão definidos nas variáveis de ambiente descritas abaixo ([Variáveis de Ambiente](../common/env.md)):
 
 ~~~bash
-DEV_APPS     # Pasta base das ferramentas de desenvolvimento (Node, Java, Flutter, Android Studio, etc)
-DEV_ROOT     # Pasta base dos seus projetos
+# Pasta base das ferramentas de desenvolvimento 
+# (Node, Java, JavaScript, Dart, Flutter, Android Studio, etc)
+DEV_APPS     
+# Pasta base dos seus projetos
+DEV_ROOT     
 ~~~
 
-Por exemplo, para configurar o Git no repositório raiz do projeto:
+Agora vamos configurar o Git para um projeto específico chamado `myproject` (você pode usar o nome que desejar):
 ~~~bash
 # Criar pasta do projeto
-mkdir -p $DEV_ROOT
+mkdir -p $DEV_ROOT/myproject
 # Entrar na pasta do projeto
-cd $DEV_ROOT
+cd $DEV_ROOT/myproject
 
 # Definir "main" como nome da branch principal
 git config --global init.defaultBranch main
@@ -307,7 +310,7 @@ O _Git Hooks_ é um recurso que permite que comandos do Git sejam interceptados 
 
 Para garantir a padronização das mensagens de _commit_ será utilizado um _script_ bash para validar as mensagens de _commit_ nos repositórios do projeto. Este _script_ será executado automaticamente pelo _Git Hooks_ sempre que um _commit_ do projeto for executado.
 
-O _script_ abaixo deve ser copiado para o seguinte arquivo dentro do repositório do projeto:  **.git/hooks/commit-msg**:
+O _script_ abaixo deve ser copiado para o seguinte arquivo dentro do repositório do projeto:  `.git/hooks/commit-msg`
 
 ~~~bash
 #!/bin/bash
@@ -372,30 +375,30 @@ Teste se o o procedimento acima está realmente bloqueando _commits_ inválidos:
 ~~~bash
 cd $DEV_ROOT
 
-# Erro: mensagem sem tipo
-touch file1.txt
+# Cria um arquivo de teste no repositório
+touch file.txt
 git add .
+
+# Erro: mensagem sem tipo
 git commit -m 'add axios package'
 
 # Erro: mensagem curta
-touch file2.txt
-git add .
 git commit -m 'chore: axios'
 
 # Erro: mensagem terminada com "."
-touch file3.txt
-git add .
 git commit -m 'chore: add axios package.'
 
 # Erro: mensagem iniciada com letra maiuscula
-touch file4.txt
-git add .
 git commit -m 'chore: Add axios package'
 
 # Mensagem correta
-touch file5.txt
-git add .
 git commit -m 'chore: add axios package'
+
+# Desfaz o último commit para não poluir o repositório
+git reset --hard
+
+# Remover o arquivo de teste
+rm file.txt
 ~~~
 
 
