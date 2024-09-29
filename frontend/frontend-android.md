@@ -16,7 +16,7 @@ Para que as instruções a seguir funcionem corretamente é necessário que as V
 
 Edite o arquivo **~/.devrc** e acrescente ao final:
 ~~~bash
-export ANDROID_BASE="$DEV_BASE/android"
+export ANDROID_BASE="$DEV_APPS/android"
 export ANDROID_USER_HOME="$ANDROID_BASE/.android"
 export ANDROID_SDK_ROOT="$ANDROID_BASE/sdk"
 export ANDROID_EMULATOR_HOME="$ANDROID_USER_HOME"
@@ -38,7 +38,7 @@ Instale o Android SDK e outras ferramentas:
 
 Execute os seguintes comandos no terminal:
 ~~~bash
-cd $DEV_BASE
+cd $DEV_APPS
 
 mkdir -p $ANDROID_HOME
 unzip -d $ANDROID_HOME ~/Downloads/commandlinetools-linux-*.zip

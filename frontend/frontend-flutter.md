@@ -15,7 +15,7 @@ Para que as instruções a seguir funcionem corretamente é necessário que as V
 Edite o arquivo **~/.devrc** que conterá todas as variáveis do ambiente de desenvolvivmento
 ~~~bash
 # Flutter & Dart
-export FLUTTER_BASE="$DEV_BASE/flutter"
+export FLUTTER_BASE="$DEV_APPS/flutter"
 export PATH="$FLUTTER_BASE/bin:$PATH"
 ~~~
 

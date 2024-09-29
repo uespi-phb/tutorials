@@ -29,16 +29,11 @@ sudo apt install git
 Os procedimentos de configuração descritos a seguir são específicos para cada repositório Git. Portanto, devem ser executados nos repositórios <u>de cada projeto</u>.
 </div>
 
-Este tutorial assume que você está configurando o repositório de um projeto que possui ambientes _backend_ e _frontend_, além de _documentação_ e _utilitários_.
-
-Os caminhos (paths) para os repositórios do projeto estão definidos nas seguintes variáveis de ambiente configuradas a partir das instruções disponíveis na seção [Variáveis de Ambiente](../common/env.md).
+Os caminhos (paths) para a pasta raiz de projetos e das ferramentas de desenvolvimento estão definidos nas variáveis de ambiente descritas abaixo ([Variáveis de Ambiente](../common/env.md)):
 
 ~~~bash
-DEV_ROOT     # Pasta base do projeto
-DEV_FRONT    # Repositório do código front-end do projeto
-DEV_BACK     # Repositório do código back-end do projeto
-DEV_DOCS     # Repositório da documentação do projeto
-DEV_UTIL     # Repositório do código dos utilitários do projeto
+DEV_APPS     # Pasta base das ferramentas de desenvolvimento (Node, Java, Flutter, Android Studio, etc)
+DEV_ROOT     # Pasta base dos seus projetos
 ~~~
 
 Por exemplo, para configurar o Git no repositório raiz do projeto:

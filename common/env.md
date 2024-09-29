@@ -17,7 +17,7 @@ As variáveis de ambiente aqui definidas serão utilizadas nos demais procedimen
 Edite o arquivo **~/.devrc** e defina as seguintes variáveis de ambiente em seu sistema.
 ~~~bash
 # Diretório base para as ferramentas de desenvolvimento (Android, Flutter, Node.JS, etc)
-export DEV_BASE="/data/dev"
+export DEV_APPS="/data/dev"
 # Localização dos repositórios de projetos
 export DEV_ROOT="$HOME/workspace"
 ~~~
@@ -31,8 +31,8 @@ Em seguida execute os comandos
 ~~~
 source ~/.bashrc
 
-sudo mkdir -p $DEV_BASE
-sudo chown $USER $DEV_BASE
+sudo mkdir -p $DEV_APPS
+sudo chown $USER $DEV_APPS
 
 mkdir -p $DEV_ROOT
 ~~~
