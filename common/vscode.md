@@ -40,3 +40,6 @@ Flutter           | Dart Code        | Suporte e debugger para Flutter
 dart-import       | Luan             | Deixa todos os imports Dart com caminhos relativos.
 Dart Data Class Generator | hzgood   | Cria classes Dart comuns automaticamente
 Flutter Riverpod Snippets | Robert Brunhage | Snippets para Flutter Riverpod
+
+---
+[Próximo: Git](./git.md) | [Anterior: Variáveis de Ambiente](../env.md)

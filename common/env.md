@@ -41,3 +41,5 @@ Instale os seguintes pacotes do Ubuntu com ferramentas para a configuração do 
 ```bash
 sudo apt -y install git curl wget file zip unzip
 ```
+---
+[Próximo: VS Code](./vscode.md) | [Anterior: Principal](../README.md)

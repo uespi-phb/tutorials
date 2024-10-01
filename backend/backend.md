@@ -53,3 +53,6 @@ Todos os procedimentos de configuração dependem das variáveis definidas em <a
 </div>
 
 - [Ambiente Node.JS com TypeScript](./backend-ts.md)
+
+---
+[Próximo: Ambiente Node.js com TypeScript](./backend-ts.md) | [Anterior: Configurações Gerais](../README.md)
