@@ -49,7 +49,7 @@ Esse entendimento é fundamental para qualquer desenvolvedor, tanto aqueles que 
 ## **Configuração do Ambiente de Desenvolvimento Backend**
 
 <div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
-Todos os procedimentos de configuração dependem das variáveis de ambientes definidas em <a href="../common/env.md">Variáveis de Ambiente</a>.
+Todos os procedimentos de configuração dependem das variáveis definidas em <a href="../common/env.md">Variáveis de Ambiente</a>.
 </div>
 
-- [Ambiente TypeScript](./backend-ts.md)
+- [Ambiente Node.JS com TypeScript](./backend-ts.md)

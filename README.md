@@ -9,15 +9,20 @@ Este documento contém as instruções técnicas necessárias para a configuraç
 Todos os procedimentos de configuração <u>dependem das variáveis de ambiente</u>. Portanto, sua configuração deve ser realizada antes de todas as outras etapas.
 </div>
 
-- [Variáveis de Ambiente](common/env.md)
-- [Visual Studio Code](common/vscode.md)
-- [Git](common/git.md) 
-- [Ambiente Backend](backend/backend.md)
-- [Ambiente Frontend](frontend/frontend.md)
+- **Configurações Gerais**
+  - [Variáveis de Ambiente](common/env.md)
+  - [Visual Studio Code](common/vscode.md)
+  - [Git](common/git.md)
+
+- **Ambiente Backend**
+   - [Contextualização](backend/backend.md)
+   - [Node.JS com TypeScript](backend/backend-ts.md)
+
+- **Ambiente Frontend**
+  - [Dart/Flutter](frontend/frontend-flutter.md)
 
 ### Documentação
-- [Documentação da API REST](openapi/mies_api.yaml)
-
+- [Documentação para APIs REST](openapi/mies_api.yaml)
 
 ### Material de Apoio
 - [Material de Apoio](common/resources.md)

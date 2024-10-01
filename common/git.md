@@ -19,9 +19,9 @@ Algumas das principais características do Git incluem:
 O Git se tornou uma ferramenta essencial para desenvolvedores de software devido à sua robustez, flexibilidade e vasta comunidade de suporte. Ele é amplamente utilizado em conjunto com plataformas como GitHub, GitLab e Bitbucket, que oferecem repositórios remotos, integrações com sistemas de CI/CD e funcionalidades colaborativas adicionais.
 
 ## Instalação no Linux Ubuntu
-~~~bash
+```bash
 sudo apt install git
-~~~
+```
 
 ### Configuração local do repositório
 
@@ -31,16 +31,16 @@ Os procedimentos de configuração do Git descritos a seguir são locais, isto �
 
 Os caminhos (paths) para a pasta raiz de projetos e das ferramentas de desenvolvimento estão definidos nas variáveis de ambiente descritas abaixo ([Variáveis de Ambiente](../common/env.md)):
 
-~~~bash
+```bash
 # Pasta base das ferramentas de desenvolvimento 
 # (Node, Java, JavaScript, Dart, Flutter, Android Studio, etc)
 DEV_APPS     
 # Pasta base dos seus projetos
 DEV_ROOT     
-~~~
+```
 
 Agora vamos configurar o Git para um projeto específico chamado `myproject` (você pode usar o nome que desejar):
-~~~bash
+```bash
 # Criar pasta do projeto
 mkdir -p $DEV_ROOT/myproject
 # Entrar na pasta do projeto
@@ -54,10 +54,10 @@ git init
 git config --local core.editor "code --wait"
 # Abrir no VSCode as configurações do Git
 git config --local --edit
-~~~
+```
 
 Edite o conteúdo do arquivo de configuração do Git. Este arquivo será gravado em **.git/config**:
-~~~ini
+```ini
 [user]
 	name = John Doe         # Seu nome
 	email = john@email.com  # Seu email no Github
@@ -73,7 +73,7 @@ Edite o conteúdo do arquivo de configuração do Git. Este arquivo será gravad
 	t = !sh -c 'git tag -a $1 -m $1' -
 	ammend = !git add --all && git commit --amend --no-edit
 	undo = !git reset HEAD~
-~~~
+```
 
 ### Cria e Configurar uma Conta no GitHub com Chave SSH
 
@@ -111,18 +111,18 @@ O SSH (Secure Shell) é um protocolo que fornece uma maneira segura de acessar e
 ##### Passo 1: Verifique você já possui uma chave SSH
 Antes de gerar uma nova chave SSH, verifique se já existe uma chave gerada no seu sistema. No terminal execute o comando:
 
-~~~bash
+```bash
 ls -al ~/.ssh
-~~~
+```
 
 Se esse diretório contiver arquivos como `id_rsa` e `id_rsa.pub`, você já possui uma chave SSH gerada. Caso contrário, siga os próximos passos para criar uma nova.
 
 ##### Passo 2: Gerar uma nova chave SSH
 Se não houver uma chave SSH, ou se você deseja criar uma nova, execute o comando a seguir no terminal para gerar uma nova chave SSH:
 
-~~~bash
+```bash
 ssh-keygen -t rsa -b 4096 -C "fulano@email.com"
-~~~
+```
 
 Onde:
 - **-t rsa** especifica o algoritmo de criptografia (RSA).
@@ -134,30 +134,30 @@ O próximo passo é adicionar sua nova chave SSH ao agente SSH, que gerencia sua
 
 1. Inicie o agente SSH, se ele não estiver em execução:
 
-    ~~~bash
+    ```bash
     eval "$(ssh-agent -s)"
-    ~~~
+    ```
 
 2. Adicione sua chave SSH ao agente:
 
-    ~~~bash
+    ```bash
     ssh-add ~/.ssh/id_rsa
-    ~~~
+    ```
 
 ##### Passo 4: Adicionar a chave SSH ao GitHub
 Agora que você gerou a chave SSH, o próximo passo é vinculá-la à sua conta no GitHub.
 
 1. Copie o conteúdo da chave pública SSH para o clipboard. Isso pode ser feito com o comando:
 
-    ~~~bash
+    ```bash
     cat ~/.ssh/id_rsa.pub
-    ~~~
+    ```
 
    Copie a saída do comando, que será algo como:
 
-    ~~~
+    ```
     ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs... fulano@email.com
-    ~~~
+    ```
 
 2. Acesse o GitHub e faça login na sua conta.
 3. No canto superior direito, clique na sua foto de perfil e vá até **Settings** (Configurações).
@@ -169,15 +169,15 @@ Agora que você gerou a chave SSH, o próximo passo é vinculá-la à sua conta 
 ##### Passo 4: Testando a conexão SSH
 Após adicionar a chave SSH, você pode testar a conexão com o GitHub para garantir que tudo foi configurado corretamente. No terminal, execute o seguinte comando:
 
-~~~bash
+```bash
 ssh -T git@github.com
-~~~
+```
 
 Se tudo estiver correto, você verá uma mensagem semelhante a:
 
-~~~
+```
 Hi seu-usuario! You've successfully authenticated, but GitHub does not provide shell access.
-~~~
+```
 
 Isso significa que a autenticação foi bem-sucedida e você pode começar a interagir com seus repositórios GitHub via SSH.
 
@@ -210,18 +210,18 @@ Primeiro, é necessário criar um novo repositório no GitHub. Para isso, siga e
 ##### 2. Vincule o repositório remoto ao repositório local
 Agora, no terminal ou linha de comando, vá até o diretório do seu repositório Git local e vincule o repositório GitHub recém-criado como o repositório remoto.
 
-~~~bash
+```bash
 git remote add origin git@github.com:seu-usuario/seu-repositorio.git
-~~~
+```
 
 Esse comando define um nome (geralmente `origin`) para o repositório remoto. Substitua `seu-usuario` e `seu-repositorio` pelo seu nome de usuário no GitHub e o nome do repositório que você acabou de criar.
 
 ##### 3. Faça o envio (push) das alterações locais para o GitHub
 Após adicionar o repositório remoto, é necessário enviar (push) as alterações do repositório local para o GitHub. Para isso, execute o seguinte comando:
 
-~~~bash
+```bash
 git push -u origin master
-~~~
+```
 
 Aqui, `master` se refere à branch principal do repositório (que pode ser chamada de `main`, dependendo da configuração). O comando `-u` cria um vínculo entre sua branch local e a branch remota, facilitando futuros envios de alterações.
 
@@ -231,9 +231,9 @@ Dependendo da configuração do GitHub, você poderá ser solicitado a inserir s
 #### 5. Verifique se a vinculação foi bem-sucedida
 Para verificar se o repositório remoto foi adicionado corretamente, você pode usar o comando:
 
-~~~bash
+```bash
 git remote -v
-~~~
+```
 
 Esse comando listará os repositórios remotos configurados, juntamente com suas URLs. Se tudo estiver correto, você verá o repositório remoto `origin` listado.
 
@@ -246,16 +246,16 @@ No contexto das mensagens de commit, recomenda-se o uso do padrão *Conventional
 A especificação do [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0) é uma convenção simples que visa padronizar as mensagens de commit. Ela define um conjunto de regras para criar um histórico de commit explícito, o que facilita a criação de ferramentas automatizadas baseadas na especificação. Esta convenção se encaixa com o *Semantic Versioning* ([SemVer](https://semver.org)), descrevendo os recursos, correções e modificações que mantém a compatibilidade nas mensagens de commit.
 
 O padrão do *Conventional Commits* especifica que a mensagem de commit deve observar a seguinte estrutura, onde os campos entre colchetes não são obrigatórios:
-~~~ini
+```ini
 <tipo>[escopo opcional]: <assunto>
 [corpo opcional]
 [rodapé(s) opcional(is)]
-~~~
+```
 
 Na maioria dos casos, uma versão simplificada desta estrutura é suficiente. Sugere-se a seguinte estrutura:
-~~~ini
+```ini
 <tipo>: <assunto>
-~~~
+```
 
 #### Tipos de _commits_ recomendados
 
@@ -280,22 +280,22 @@ Sugere-se a utilização das seguintes regras nas mensagens de commit:
 
 #### Exemplos de commits <u>dentro do padrão</u> sugerido:
 
-~~~bash
+```bash
 git commit -m "fix: fix issue loading data in LoadCache class"
 git commit -m "feat: move interface EncryptAdapter to its own file"
 git commit -m "chore: add GetX package"
 git commit -m "test: ensure Composite returns local data"
 git commit -m "refactor: move SUT creation to setUp method"
-~~~
+```
 
 #### Exemplos de commits <u>fora do padrão</u> do projeto:
-~~~bash
+```bash
 git commit -m "fix: fix issue loading data in loadcache class"
 git commit -m "feat: move interface EncryptAdapter to its own file."
 git commit -m "chore: Add GetX package"
 git commit -m "test: assegura que Composite retorna dados locais"
 git commit -m "refactor: moved SUT creation to setUp method"
-~~~
+```
 O que há de errado nas mensagens de _commit_ acima?
 
 1. Nome da classe (identificador) "loadcache" não escrito como no código (deveria ser "LoadCache");
@@ -312,7 +312,7 @@ Para garantir a padronização das mensagens de _commit_ será utilizado um _scr
 
 O _script_ abaixo deve ser copiado para o seguinte arquivo dentro do repositório do projeto:  `.git/hooks/commit-msg`
 
-~~~bash
+```bash
 #!/bin/bash
 #
 # This script validates commit messages to comply to
@@ -363,16 +363,16 @@ if ! [[ "${message}" =~ ${regex} ]]; then
 fi
 
 exit 0
-~~~
+```
 
 Em seguida é necessário dar permissão de execução para o arquivo do _script_:
-~~~bash
+```bash
 chmod +x .git/hooks/commit-msg
-~~~
+```
 
 Teste se o o procedimento acima está realmente bloqueando _commits_ inválidos:
 
-~~~bash
+```bash
 cd $DEV_ROOT
 
 # Cria um arquivo de teste no repositório
@@ -399,7 +399,7 @@ git reset --hard
 
 # Remover o arquivo de teste
 rm file.txt
-~~~
+```
 
 
 ## Referências

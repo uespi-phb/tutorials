@@ -15,7 +15,7 @@ Para que as instruções a seguir funcionem corretamente é necessário que as V
 > Configuração das [Variáveis de Ambiente](../common/env.md) do Projeto.
 
 Edite o arquivo **~/.devrc** e acrescente ao final:
-~~~bash
+```bash
 export ANDROID_BASE="$DEV_APPS/android"
 export ANDROID_USER_HOME="$ANDROID_BASE/.android"
 export ANDROID_SDK_ROOT="$ANDROID_BASE/sdk"
@@ -24,12 +24,12 @@ export ANDROID_AVD_HOME="$ANDROID_EMULATOR_HOME/avd"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 
 export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH"
-~~~
+```
 
 Ao concluir a edição do arquivo **~/.bashrc** execute o comando:
-~~~bash
+```bash
 source ~/.bashrc
-~~~
+```
 
 Instale o Android SDK e outras ferramentas:
 
@@ -37,7 +37,7 @@ Instale o Android SDK e outras ferramentas:
 2. No final da página, baixe o arquivo de instalação do _SDK Manager Command Line Tools_ na pasta **~/Downloads**:
 
 Execute os seguintes comandos no terminal:
-~~~bash
+```bash
 cd $DEV_APPS
 
 mkdir -p $ANDROID_HOME
@@ -62,4 +62,4 @@ sdkmanager --update
 
 # Aceita as licenças do Android SDK
 yes | sdkmanager --licenses
-~~~
+```

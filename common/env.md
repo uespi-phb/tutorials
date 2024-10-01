@@ -15,29 +15,29 @@ As variáveis de ambiente aqui definidas serão utilizadas nos demais procedimen
 
 
 Edite o arquivo **~/.devrc** e defina as seguintes variáveis de ambiente em seu sistema.
-~~~bash
-# Diretório base para as ferramentas de desenvolvimento (Android, Flutter, Node.JS, etc)
+```bash
+# Development tools home (Android, Flutter, Node.JS, etc)
 export DEV_APPS="/data/dev"
-# Localização dos repositórios de projetos
+# Your projects home
 export DEV_ROOT="$HOME/workspace"
-~~~
+```
 
 Acrescente o seguinte comando no final do arquivo **~/.bashrc**
-~~~
+```
 source ~/.devrc
-~~~
+```
 
 Em seguida execute os comandos
-~~~
+```
 source ~/.bashrc
 
 sudo mkdir -p $DEV_APPS
 sudo chown $USER $DEV_APPS
 
 mkdir -p $DEV_ROOT
-~~~
+```
 
 Instale os seguintes pacotes do Ubuntu com ferramentas para a configuração do ambiente:
-~~~bash
+```bash
 sudo apt -y install git curl wget file zip unzip
-~~~
+```

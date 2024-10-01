@@ -66,84 +66,57 @@ O NVM (Node Version Manager) é uma ferramenta essencial para desenvolvedores qu
 
 Antes de iniciar a instalação, certifique-se de que todos os pacotes do seu sistema estão atualizados e que possui as dependências necessárias instaladas. No terminal, execute:
 
-~~~bash
+```bash
 sudo apt -y update
 sudo apt -y install build-essential libssl-dev curl
-~~~
+```
 
-##### Passo 2: Instalar o Node.js, NPM e NVM
+##### Passo 2: Instalar o NVM
 
-Agora, vamos baixar e instalar o NVM a partir do repositório oficial do GitHub. Use o **curl** para fazer o download e executar o script de instalação:
+Crie a variável de ambiente que define o local de instalação do NVM acrescentando os seguintes comandos no final do arquivo `~/.devrc`:
 
-~~~bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-~~~
-> **Nota**: A versão do NVM (`v0.40.1` neste exemplo) pode mudar conforme novas versões sejam lançadas. Você pode sempre verificar a versão mais recente no [repositório do NVM no GitHub](https://github.com/nvm-sh/nvm).
-
-Em seguida crie a variável de ambiente que define o local de instalação do NVM acrescentando no final do arquivo `.bashrc`:
-
-~~~bash
-export NVM_DIR="$HOME/.nvm"
+```bash
+# NVM home
+export NVM_DIR="$DEV_APPS/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-~~~
 
-Atualize o ambiente e teste a instalação do NVM:
-~~~bash
+# Put NVM_DIR in PATH if not already
+[[ ":$PATH:" != *":$NVM_DIR:"* ]] && export PATH="${PATH}:$NVM_DIR"
+```
+
+Atualize o ambiente, instale o NVM no local especificado ($NVM_DIR) e teste sua instalação:
+```bash
 source ~/.bashrc
+mkdir $NVM_DIR
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
 nvm -v
-~~~
-
-
-### 4. Carregar o NVM no Shell
-
-O script de instalação do NVM automaticamente adiciona as configurações necessárias ao arquivo de inicialização do shell, como `.bashrc`, `.bash_profile` ou `.zshrc`, dependendo do shell que você usa.
-
-Para garantir que o NVM esteja disponível no terminal sem reiniciar o shell, execute:
-
-```bash
-source ~/.bashrc
 ```
+> **Nota**: A versão do NVM (`v0.40.1` neste exemplo ) pode mudar conforme novas versões sejam lançadas. Você pode sempre verificar a versão mais recente no [repositório do NVM no GitHub](https://github.com/nvm-sh/nvm).
 
-Se você estiver usando o **zsh**, execute:
+Se o comando `nvm -v` retornar um número de versão, isso significa que o NVM foi instalado com sucesso.
 
-```bash
-source ~/.zshrc
-```
-
----
-
-### 5. Verificar a Instalação do NVM
-
-Para verificar se o NVM foi instalado corretamente, execute o comando abaixo no terminal:
-
-```bash
-nvm --version
-```
-
-Se o comando retornar um número de versão, isso significa que o NVM foi instalado com sucesso.
-
----
-
-### 6. Instalar uma Versão do Node.js com o NVM
+##### Passo 3: Instalar o Node.js e o NPM
 
 Agora que o NVM está instalado, você pode usá-lo para instalar qualquer versão do Node.js. Por exemplo, para instalar a versão mais recente, execute:
 
 ```bash
 nvm install node
+
+node -v
+npm -v
 ```
 
-Isso instalará a versão mais recente do Node.js.
+Isso instalará a versão mais recente do Node.js na pasta `$NVM_DIR`. Se a instalação tiver sido bem sucedida os comandos `node -v` e `npm -v` irão apresentar as suas respectivas versões.
+
+##### Passo 4: Instalar Outras Versões e/ou Definir uma Versão Padrão do Node.js (opcional)
 
 Se você precisar de uma versão específica do Node.js (por exemplo, 14.x), você pode instalar essa versão com o comando:
 
 ```bash
 nvm install 14
 ```
-
----
-
-### 7. Definir uma Versão Padrão do Node.js
 
 Depois de instalar uma ou mais versões do Node.js, você pode escolher qual versão usar como padrão. Para usar a versão 14, por exemplo, digite:
 
@@ -157,10 +130,6 @@ Se você quiser definir essa versão como a versão padrão para todas as sessõ
 nvm alias default 14
 ```
 
----
-
-### 8. Listar Versões Instaladas
-
 Para ver todas as versões do Node.js que você já instalou com o NVM, execute:
 
 ```bash
@@ -169,67 +138,15 @@ nvm ls
 
 Esse comando listará todas as versões instaladas e indicará qual delas está atualmente em uso.
 
----
-
-### 9. Alternar Entre Versões do Node.js
-
 Se você tiver várias versões do Node.js instaladas, pode alternar entre elas facilmente. Por exemplo, para mudar para a versão 16, use:
 
 ```bash
 nvm use 16
 ```
 
----
-
-### Considerações Finais
-
-Agora você tem o **NVM** instalado e configurado no Ubuntu, permitindo que você gerencie facilmente diferentes versões do Node.js. Isso é especialmente útil para desenvolvedores que trabalham em vários projetos com requisitos distintos de versões de Node.js.
-
-Com o NVM, você pode instalar, desinstalar e alternar entre versões do Node.js com facilidade, sem a necessidade de gerenciar manualmente as instalações do Node.js.
-
-
-
-
-
-
-
-Agora, vamos baixar e instalar o NVM a partir do repositório oficial do GitHub. Use o curl para fazer o download e executar o script de instalação:
-
-~~~bash
-Copiar código
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-Nota: A versão do NVM (v0.39.4 neste exemplo) pode mudar conforme novas versões sejam lançadas. Você pode sempre verificar a versão mais recente no repositório do NVM no GitHub.
-~~~
-
-Em distribuições baseadas no Debian (como o Ubuntu), podemos instalar o Node.js diretamente dos repositórios oficiais.
-
-~~~bash
-sudo apt -y install nodejs npm
-~~~
-
-Após a instalação, verifique se o Node.js e o npm foram instalados corretamente:
-
-~~~bash
-node -v
-npm -v
-~~~
-
-Esses comandos devem retornar as versões do Node.js e do npm, respectivamente.
-
-##### Passo 3: Instale a versão mais recente do Node.js
-
-O Node.js disponível nos repositórios do sistema pode não ser a versão mais recente. Para garantir que você tenha a versão mais atual, siga as etapas abaixo para usar o NodeSource, que oferece as versões mais recentes do Node.js:
-
-~~~bash
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
-~~~
-
-Esse comando instala o Node.js da versão 18.x. Você pode ajustar o número para a versão que desejar.
-
 ### 2. Instalar o TypeScript
 
-Agora que o Node.js e o npm estão instalados, o próximo passo é instalar o **TypeScript**, o qual pode ser configurador local ou globalmente. A escolha entre essas formas depende de como você deseja utilizar o TypeScript no projeto ou no sistema.
+Agora que o Node.js e o NPM estão instalados, o próximo passo é instalar o **TypeScript**, o qual pode ser configurado local ou globalmente. A escolha entre essas formas depende de como você deseja utilizar o TypeScript no projeto ou no sistema.
 
 ##### Instalação Local
 Instalar o TypeScript localmente significa que ele será instalado dentro de um projeto específico, ficando disponível apenas para aquele projeto. Ele será listado como uma dependência no arquivo package.json, e a versão instalada será usada apenas no escopo desse projeto.
@@ -243,27 +160,29 @@ Instalar o TypeScript globalmente significa que ele será acessível em qualquer
 
 Neste tutorial optaremos pela **instalação local** do TypeScript.
 
-#### Passo 1: Criar um projeto
+##### Passo 1: Criar um novo projeto (ou usar um existente)
 
 Instalar o TS localmente significa que ele será configurado como um pacote de um projeto específico. Desta forma, antes mais nada precisamos criar um novo projeto no Node.js e configurá-lo utilizando o NPM.
 
-~~~bash
-# Entrar na pasta base do projeto
-cd $DEV_ROOT
-# Criar um novo projeto
+```bash
+# Criar pasta raiz do projeto
+mkdir $DEV_ROOT/myproject
+# Mudar para a pasta do projeto
+cd $DEV_ROOT/myproject
+# Criar um novo projeto Node.js
 npm init -y
-~~~
+```
 
-O comando `npm init` cria um novo projeto gravando suas configurações no arquivo `package.json` e instalará suas dependências dentro da pasta `node_modules`. Esta pasta sempre poderá ser gerada automaticamente a partir das configurações contidas no arquivo `package.json` por meio do comando `npm init`. 
+O comando `npm init` cria um novo projeto gravando suas configurações no arquivo `package.json` e instala suas dependências dentro da pasta `node_modules`. Esta pasta sempre poderá ser gerada automaticamente a partir das configurações contidas no arquivo `package.json` por meio do comando `npm init`. 
 
-Desta forma, não é desejável que a pasta `node_modules` seja incluída em nosso repositório Git. Para evitar isso devemos instruir o Git a ignorar esta pasta criando o arquivo `.gitignore`.
+Desta forma, não é desejável que a pasta `node_modules` seja incluída em nosso repositório Git. Para evitar isso devemos instruir o Git para ignorar esta pasta criando o arquivo `.gitignore`.
 
-~~~bash
+```bash
 # Cria o arquivo .gitignore na raiz do projeto
 echo -e 'node_modules\n' > .gitignore
-~~~
+```
 
-#### Passo 2: Instalar o TypeScript como uma dependência do projeto
+##### Passo 2: Instalar o TypeScript como uma dependência do projeto
 
 Uma **dependência** é um pacote ou biblioteca externa que um projeto de software precisa para funcionar corretamente. Ela fornece funcionalidades que são reutilizadas no projeto, evitando que o desenvolvedor tenha que escrever tudo do zero. Dependências podem incluir frameworks, bibliotecas de manipulação de dados, ferramentas de teste ou qualquer outro código que a aplicação necessite para implementar suas funcionalidades.
 
@@ -277,6 +196,451 @@ As dependências podem ser classificadas em duas categorias principais: **depend
 
 O TS será instalado localmente como uma dependência de desenvolvimento do projeto (flag `-D`).
 
-~~~bash
+```bash
 npm install -D typescript
-~~~
+
+npx tsc -v
+```
+Se a instalação tiver sido bem sucedida, o comando `npx tsc -v` deverá exibir a versão do TS que foi instalada.
+
+Como o TS foi instalado como uma dependência do projeto, você também pode verificar sua instalação analisando o arquivo de configuração do projeto Node.js `package.json` no campo `devDependencies`.
+
+```json
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
+```
+
+##### Passo 3: Criar um arquivo de configuração do TypeScript no projeto
+
+Para criar um arquivo de configuração do TypeScript em um projeto, você precisa gerar o arquivo `tsconfig.json`, que serve como um ponto central de configuração para o compilador. Ele especifica as opções de compilação, diretórios, arquivos, e o comportamento do compilador.
+
+O comando abaixo cria um **arquivo de configuração padrão** para o TypeScript:
+
+```bash
+npx tsc --init
+```
+
+###### Configuração TS: Targets
+
+Porém, vamos criar um arquivo de configuração inicial personalizado onde iremos definir alguns parâmetros importantes. Para isto altere o conteúdo do arquivo `tsconfig.json` para:
+
+```json
+{
+  "compilerOptions": {
+    // Versão alvo do JS (ES2022).
+    "target": "es2022",
+    // Diretório de destina dos arquivos TS transpilados.
+    "outDir": "./dist",
+    // Diretório raiz dos arquivos TS do projeto
+    "rootDir": "./src",
+    // Ignora a verificação de tipos nos arquivos de definição de bibliotecas.
+    "skipLibCheck": true,
+    // Habilita a geração de mapas de origem para depuração (debugging).
+    "sourceMap": true,
+    // Verifica consistência no uso de maiúsculas/minúsculas nos nomes de arquivos.
+    "forceConsistentCasingInFileNames": true
+  },
+  // Define os arquivos/folders a serem compilados (neste caso, o diretório ./src).
+  "include": [
+    "./src"
+  ]
+}
+```
+
+Por ser um ambiente de linha de comando, muitas vezes é necessário digitar comandos complexos para executar determinadas tarefas. Para facilitar esta tarefa é bastante comum criarmos _scripts_ no arquivo `package.json`. 
+
+Tais _scripts_ são importantes para automatizar tarefas recorrentes e simplificar comandos complexos no desenvolvimento de projetos Node.js. Eles ajudam a padronizar o ambiente de trabalho, garantindo que todos os desenvolvedores usem os mesmos comandos e ferramentas, promovendo consistência em equipes de desenvolvimento. Assim, esses _scripts_ são uma forma simples de documentar os processos do projeto, tornando mais fácil a execução de tarefas como compilar, testar ou rodar _linters_, com comandos curtos e fáceis de lembrar.
+
+Vamos criar um _script_ chamado "_build_" para realizar a compilação do nosso projeto, além de realizar alguns ajustes no arquivo `package.json`.
+
+```json
+{
+  "name": "myproject",
+  "description": "My Sample Project",
+  "author": "Fulano de Tal",
+  "license": "ISC",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}
+```
+
+Também vamos criar o arquivo principal de nosso projeto que tipicamente, mas não obrigatoriamente, se chama `index.ts`. Em seguida executaremos o _script_.
+
+```bash
+mkdir ./src
+echo "console.log('Hello, World.')" > src/index.ts
+
+npm run build
+```
+Após a execução do _script_, o compilador do TS irá criar a pasta `./dist` contendo os arquivos TS do projeto compilados para JS. Como a opção `sourceMap` está habilitada no `tsconfig.json`, para cada arquivo JS gerado em `./dist`, será criado um arquivo de mapeamento com extensão `.map`.
+
+Uma boa prática adotada durante o _build_ de projetos TS é remover todos os arquivos da pasta `./dist` antes da compilação. Isto garante que os arquivos presentes na pasta sempre correspondam aos arquivos presentes na pasta `./src`.
+```json
+{
+  // ...
+  "scripts": {
+    "start": "node dist/main/index.js",
+    "build": "rm -rf ./dist && tsc"
+  },
+  // ...
+}
+```
+> **Nota**: O comando `rm -rf` funciona apenas no Linux e MacOS. No Windows utilize o comando `rmdir /q /s`
+
+###### Configuração TS: Modules
+
+Nesta seção iremos configurar o TS para suportar a importação de módulos JS. Para isto altere o arquivo `tsconfig.json` para:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    // Define o sistema de módulos como o padrão do Node.js
+    "module": "commonjs",
+    // Utiliza o modo de resolução de módulos padrão do Node.js
+    "moduleResolution": "node",
+    // Habilita a interoperabilidade entre CommonJS e ES Module
+    "esModuleInterop": true,
+    // Define o diretório base para a resolução de módulos relativos
+    "baseUrl": "./src",
+    // Permite que "@/" e "@/tests" sejam apelidos para as pastas "src/" e "../tests"
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@/tests/*": [
+        "../tests/*"
+      ]
+    }
+  },
+  "include": [
+    "./src",
+    "./tests"
+  ]
+}
+```
+Observe que foi acrescentada a pasta `./tests` na configuração o que fará o TS compilar os arquivos de teste para a pasta `./dist`. Porém, os arquivos de teste só são utilizados durante o desenvolvimento do projeto, isto é, não são necessários para o código de produção. 
+
+Para evitar que os arquivos de testes sejam compilados juntos com o código de produção, criaremos uma configuração específica para a construção do apenas do código de produção no arquivo `tsconfig.build.json`:
+```json
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "./tests"
+  ]
+}
+```
+Agora devemos atualizar nosso _script_ `build` para utuilizar este arquivo de configuração:
+```json
+{
+  // ...
+  "scripts": {
+    "start": "node dist/main/index.js",
+    "build": "rm -rf ./dist && tsc -p tsconfig.build.json"
+  },
+  // ...
+}
+```
+
+O `module-alias` é uma biblioteca do Node.js que permite criar atalhos (alias) para caminhos de importação em projetos JavaScript ou TypeScript. Com ele, você pode evitar o uso de caminhos longos ou complexos ao importar arquivos, substituindo-os por atalhos mais simples. Isso melhora a legibilidade e a manutenção do código.
+
+Para utilizar o `module-alias` instale os seguintes pacotes:
+```bash
+npm install module-alias
+npm install -D @types/module-alias @types/node
+```
+
+###### Configuração TS: Strict  Mode
+
+O **strict mode** do TypeScript é uma configuração que ativa uma série de verificações rigorosas de tipo para garantir mais segurança e robustez no código. Ele habilita várias opções que forçam o desenvolvedor a ser mais explícito e cuidadoso com tipos, ajudando a prevenir erros comuns.
+
+Quando ativado (`"strict": true` no `tsconfig.json`), são habilitada as seguintes verificações:
+
+- **`noImplicitAny`**: Obriga a declarar o tipo de uma variável explicitamente quando este não pode ser inferido.
+- **`strictNullChecks`**: Garante que variáveis que podem ser `null` ou `undefined` sejam tratadas adequadamente.
+- **`strictFunctionTypes`**: Verifica com rigor a compatibilidade de tipos de funções.
+- **`strictBindCallApply`**: Verifica corretamente os tipos de métodos como `bind`, `call` e `apply`.
+- **`alwaysStrict`**: Emite código JavaScript no modo estrito (`"use strict"`).
+- **`strictPropertyInitialization`**: Exige a inicialização de propriedades de classes no construtor.
+
+O **strict mode** impõe verificações mais rígidas de tipos, tornando o código mais seguro e menos propenso a erros, mas também exige mais precisão do desenvolvedor na declaração e uso de tipos.
+
+Acrescente a linha `"strict": true` ao arquivo `jsconfig.json`. A versão final deverá ser similar à apresentada abaixo:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@/tests/*": [
+        "../tests/*"
+      ]
+    }
+  },
+  "include": [
+    "./src"
+  ]
+}
+```
+
+##### Passo 4: Configurar o Linter para o TS
+
+Um _linter_ é uma ferramenta usada para analisar o código fonte de forma estática (sem executá-lo) para identificar problemas de estilo, más práticas e erros potenciais. Ele ajuda a garantir que o código siga padrões de qualidade e consistência, apontando problemas como:
+
+- Violação de convenções de codificação.
+- Uso de variáveis não definidas.
+- Erros de sintaxe ou lógica.
+- Problemas de formatação, como indentação incorreta ou espaçamento.
+
+Um _linter_ pode ser configurado para seguir regras específicas de um projeto ou de uma equipe de desenvolvimento, promovendo uniformidade e prevenindo _bugs_.
+
+O _ESLint_ é um dos _linters_ mais populares e amplamente usados para JavaScript e TypeScript. Ele permite definir e aplicar um conjunto de regras que verificam a qualidade do código, ajudando a encontrar e corrigir problemas automaticamente ou fornecendo sugestões de melhorias.
+
+Suas principais funcionalidades são:
+- **Verificação de sintaxe**: Encontra erros de sintaxe no código.
+- **Melhorias de estilo**: Garante que o código siga convenções de estilo, como espaçamento, indentação, uso ou não de ponto e vírgula, etc.
+- **Regras personalizáveis**: Permite configurar regras personalizadas, conforme as necessidades do projeto ou time.
+- **Plugins**: Suporta _plugins_ para estender suas funcionalidades (suporte para React, Node.js, TypeScript, etc).
+- **Autocorreção**: O _ESLint_ pode, em alguns casos, corrigir automaticamente problemas de estilo.
+
+Para instalar o ESLint no projeto execute o seguinte comando:
+```bash
+npm install -D typescript-eslint @eslint/js @types/node
+```
+
+Em seguida crie o seguinte arquivo de configuração do ESLint (`eslint.config.mjs`) na raiz do projeto:
+```js
+import globals from "globals"
+import pluginJs from "@eslint/js"
+import tseslint from "typescript-eslint"
+
+export default [
+  {
+    ignores: [
+      "node_modules/*",
+      "dist/*"
+    ]
+  },
+  {
+    name: "project/rules",
+    rules: {
+      "eol-last": ["error", "always"],
+      "semi": ["error", "never"]
+    }
+  },
+  {
+    languageOptions: {
+      globals: globals.node
+    }
+  },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+]
+```
+
+Crie os seguintes _scripts_ para simplificar a execução do ESLint no projeto:
+```json
+// package.json
+{
+  // ...
+  "scripts": {
+    "start": "node dist/main/index.js",
+    "build": "rm -rf ./dist && tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  // ...
+}
+```
+
+##### Passo 5: Configurar o Jest para o TS
+
+**Testes de software** são fundamentais para garantir a qualidade, confiabilidade e segurança do código. Eles verificam se o software funciona conforme o esperado em diferentes situações, além de prevenir erros e regressões quando novos recursos são adicionados. Aqui estão algumas razões principais para usar testes de software:
+
+1. **Prevenção de erros e regressões**:
+   - Testes de software ajudam a identificar e corrigir bugs antes que o código seja implantado em produção. Quando novas funcionalidades são introduzidas, os testes garantem que o comportamento existente não seja afetado, prevenindo **regressões**.
+
+2. **Manutenção e Refatoração**:
+   - Em projetos de longo prazo, o código pode ser modificado ou refatorado várias vezes. Testes automatizados garantem que o código ainda funciona corretamente após essas alterações, tornando a manutenção muito mais segura e eficiente.
+
+3. **Documentação viva**:
+   - Testes servem como uma forma de documentação que descreve como o código deve funcionar. Eles fornecem uma "descrição executável" de como o sistema deve se comportar, ajudando desenvolvedores a entender melhor as funcionalidades e requisitos.
+
+4. **Confiança no código**:
+   - Com uma suíte de testes bem estruturada, as equipes de desenvolvimento ganham confiança para realizar mudanças, sabendo que, se algo quebrar, os testes irão alertá-los imediatamente.
+
+5. **Melhoria da qualidade do software**:
+   - Testes ajudam a melhorar a qualidade geral do código, incentivando os desenvolvedores a pensar em casos de uso extremos ou situações excepcionais que podem não ser óbvias durante o desenvolvimento inicial.
+
+Para desevolver aplicações com suporte a testes de software é necessária a instalação e configuração de algum _framework_ de testes, como o Jest, Mocha, Karma, Ava, etc. Netse projeto utilizaremos o **Jest**.
+
+O **Jest** é um **framework de testes automatizados** em JavaScript, desenvolvido pelo Facebook, que permite escrever testes de maneira simples e eficiente. Embora tenha sido projetado inicialmente para testar componentes React, ele é agnóstico à tecnologia, sendo adequado para qualquer aplicação JavaScript ou TypeScript. Suas principais características são:
+
+1. **Configuração simples**:
+   - O Jest funciona com configuração mínima ou nenhuma. Ele detecta automaticamente arquivos de teste sem que você precise configurar caminhos complexos ou definir padrões específicos.
+
+2. **Execução paralela de testes**:
+   - O Jest executa os testes em paralelo, otimizando o tempo de execução ao utilizar todos os núcleos da CPU. Isso resulta em uma execução mais rápida, especialmente em projetos grandes.
+
+3. **Testes unitários, de integração e de snapshot**:
+   - **Testes unitários**: Verificam o funcionamento de unidades menores de código, como funções individuais.
+   - **Testes de integração**: Validam a interação entre diferentes partes do código.
+   - **Testes de snapshot**: Armazenam a saída renderizada de um componente (ou função) e comparam com a versão anterior para detectar mudanças não intencionais.
+
+4. **Mocking e spying**:
+   - O Jest permite **mockar** (simular) dependências, funções ou APIs externas, isolando o código testado. Isso facilita testes de código que dependem de funções externas ou de resultados que variam com o tempo, como APIs.
+   - Também suporta **spying**, que permite monitorar se uma função foi chamada e com quais parâmetros.
+
+5. **Cobertura de código**:
+   - O Jest gera relatórios detalhados de **cobertura de código**, mostrando quantas linhas, funções e branches do código foram testados. Isso ajuda a identificar partes não cobertas pelos testes.
+
+Para instalar o Jest no projeto execute o seguinte comando:
+```bash
+npm install -D jest @types/jest ts-jest ts-node babel-jest @babel/core @babel/preset-env
+```
+
+Em seguinte crie ou atualize os seguintes arquivos do`projeto.
+**`jest.config.ts`**
+```ts
+import type { Config } from 'jest'
+
+const config: Config = {
+  verbose: true,
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.ts',
+    
+  ],
+  coverageDirectory: './coverage',
+  coverageProvider: 'babel',
+  moduleNameMapper: {
+    '@/tests/(.+)': '<rootDir>/tests/$1',
+    '@/(.+)': '<rootDir>/src/$1',
+  },
+  roots: [
+    '<rootDir>/src',
+    '<rootDir>/tests',
+  ],
+  testEnvironment: 'jest-environment-node',
+  transform: {
+    '\\.ts$': 'ts-jest'
+  }
+}
+
+export default config
+```
+**`package.json`**
+```json
+{
+  // ...
+  "scripts": {
+    // ...
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage"  
+  },
+  // ...
+}
+```
+##### Passo 6: Configurar o Lint Staged
+
+O `lint-staged` é uma ferramenta que permite executar _linters_ (_ESLint_) e outros _scripts_ apenas nos arquivos que estão prestes a ser commitados (ou seja, que foram modificados e estão na "_staging area_" do Git). Ela é comumente usada em conjunto com alguma outra ferramenta para automatizar a execução de verificações de código (_linting_) e formatação antes que um _commit_ seja concluído.
+
+**Por que usar o lint-staged?**
+
+- **Melhoria da Qualidade do Código**: o _linting_ é uma prática que ajuda a detectar problemas de estilo e erros no código antes que ele seja integrado ao repositório. O `lint-staged` garante que os arquivos modificados sejam verificados antes do _commit_, evitando que código problemático seja integrado ao repositório principal.
+
+- **Rapidez na Execução**: em vez de executar o _linter_ em todo o código da base do projeto, o `lint-staged` verifica apenas os arquivos que estão na _staging area_ do Git, ou seja, aqueles que foram alterados. Isso melhora significativamente a desempenho, pois a execução é mais rápida do que rodar o _linter_ em todo o projeto.
+
+- **Automatização do Fluxo de Trabalho**: o `lint-staged` é geralmente configurado para funcionar com _hooks_ do Git. Isso significa que as verificações de _linting_ e formatação podem ser executadas automaticamente sempre que você tentar realizar um _commit_, forçando os desenvolvedores a corrigir problemas antes de subir o código para o respositório
+
+- **Manutenção de Consistência**: em projetos colaborativos, é crucial garantir que todos os desenvolvedores sigam as mesmas práticas e padrões de código. O `lint-staged` força a verificação de padrões de formatação e boas práticas de codificação, ajudando a manter o código consistente entre diferentes membros da equipe.
+
+Para instalar o `lint-staged` no projeto execute o seguinte comando:
+```bash
+npm install -D lint-staged
+```
+
+Depois crie seu arquivo de configuração `.lintstagedrc.json` na raiz do projeto:
+```json
+{
+  "*.ts": [
+    "npm run lint:fix",
+    "npm run test:staged"
+  ]
+}
+```
+
+Em seguida crie o novo _script_ `test:staged` no `package.json`:
+```json
+{
+  // ...
+  "scripts": {
+    // ...
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:coverage": "npm test -- --coverage"  
+  },
+  // ...
+}
+```
+
+Agora é necessário garantir que sempre que for feito um _commit_ no projeto, os testes sejam executados para garantir que nenhum código com erro seja integrado ao repositório.
+
+Para isto é necessário definir um script de _hook_ do Git, executando os seguintes comandos:
+```bash
+# Script a ser executado antes de cada commit
+cat << EOF > .git/hooks/pre-commit
+#!/bin/bash
+npx lint-staged
+EOF
+chmod +x .git/hooks/pre-commit
+
+# Script a ser executado antes de cada push
+cat << EOF > .git/hooks/pre-push
+#!/bin/bash
+npm run test:coverage
+EOF
+chmod +x .git/hooks/pre-push
+```

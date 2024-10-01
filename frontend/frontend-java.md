@@ -14,16 +14,16 @@ Para que as instruções a seguir funcionem corretamente é necessário que as V
 
 Edite o arquivo **~/.devrc** e acrescente ao final:
 
-~~~bash
+```bash
 # Java SDK
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 export PATH="/usr/lib/jvm/java-11-openjdk-amd64:$PATH"
-~~~
+```
 
 Ao concluir a edição do arquivo **~/.devrc** execute os comandos:
-~~~bash
+```bash
 source ~/.bashrc
 
 sudo apt install -y default-jre default-jdk
-~~~
+```
 
