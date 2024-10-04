@@ -235,15 +235,9 @@ Como o TS foi instalado como uma dependência do projeto, você também pode ver
 
 Para criar um arquivo de configuração do TypeScript em um projeto, você precisa gerar o arquivo `tsconfig.json`, que serve como um ponto central de configuração para o compilador. Ele especifica as opções de compilação, diretórios, arquivos, e o comportamento do compilador.
 
-O comando abaixo cria um **arquivo de configuração padrão** para o TypeScript:
-
-```bash
-npx tsc --init
-```
-
 ###### Configuração TS: Targets
 
-Porém, vamos criar um arquivo de configuração inicial personalizado onde iremos definir alguns parâmetros importantes. Para isto altere o conteúdo do arquivo `tsconfig.json` para:
+Vamos criar um arquivo de configuração inicial personalizado onde iremos definir alguns parâmetros importantes. Para isto altere o conteúdo do arquivo `tsconfig.json` para:
 
 ```json
 {
@@ -296,7 +290,7 @@ Vamos criar um _script_ chamado "_build_" para realizar a compilação do nosso 
   "author": "Fulano de Tal",
   "license": "ISC",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/main/index.js",
   "scripts": {
     "build": "tsc"
   },
@@ -310,8 +304,8 @@ Vamos criar um _script_ chamado "_build_" para realizar a compilação do nosso 
 Também vamos criar o arquivo principal de nosso projeto que tipicamente (mas não obrigatoriamente) se chama `index.ts`. Em seguida executaremos o _script_.
 
 ```bash
-mkdir ./src
-echo "console.log('Hello, World.')" > src/index.ts
+mkdir -p ./src/main
+echo "console.log('Hello, World.')" > src/main/index.ts
 
 npm run build
 ```
@@ -403,13 +397,36 @@ Agora devemos atualizar nosso _script_ `build` para utilizar este arquivo de con
   // ...
 }
 ```
+##### `module-alias`
 
-O `module-alias` é uma biblioteca do Node.js que permite criar atalhos (alias) para caminhos de importação em projetos JavaScript ou TypeScript. Com ele, você pode evitar o uso de caminhos longos ou complexos ao importar arquivos, substituindo-os por atalhos mais simples. Isso melhora a legibilidade e a manutenção do código.
+O `module-alias` é uma biblioteca do Node.js que permite criar atalhos (_alias_) para caminhos de importação em projetos JavaScript ou TypeScript. Com ele, você pode evitar o uso de caminhos longos ou complexos ao importar arquivos, substituindo-os por atalhos mais simples. Isso melhora a legibilidade e a manutenção do código.
 
 Para utilizar o `module-alias` instale os seguintes pacotes:
 ```bash
 npm install module-alias
 npm install -D @types/module-alias @types/node
+```
+
+Para que o `module-alias` funcione é necessário que o mesmo seja carregado no início do arquivo fonte principal do projeto. Para tanto, crie/altere os seguintes arquivos:
+
+`./src/config/module-alias.ts`
+```typescript
+import { addAlias } from 'module-alias'
+import { resolve } from 'path'
+
+addAlias('@', resolve('dist'))
+```
+
+`./src/main/index.ts`
+```typescript
+//
+// Must be the very first import in application
+//
+import '../config/module-alias'
+//
+//
+console.log('Hello, world.')
+
 ```
 
 ###### Configuração TS: Strict  Mode
