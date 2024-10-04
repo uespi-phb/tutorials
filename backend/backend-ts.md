@@ -592,8 +592,9 @@ npm install -D jest @types/jest ts-jest ts-node babel-jest @babel/core @babel/pr
 ```
 
 Em seguinda crie ou atualize os seguintes arquivos do projeto:
+
 **`jest.config.ts`**
-```ts
+```typescript
 import type { Config } from 'jest'
 
 const config: Config = {
