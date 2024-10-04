@@ -19,6 +19,7 @@ Todos os procedimentos de configuração <u>dependem das variáveis de ambiente<
    - [Node.JS com TypeScript](backend/backend-ts.md)
 
 - **Ambiente Frontend**
+  - [Contextualização](frontend/frontend.md)
   - [Dart/Flutter](frontend/frontend-flutter.md)
 
 ### Documentação

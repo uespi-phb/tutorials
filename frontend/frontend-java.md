@@ -1,29 +1,40 @@
 <p><img src="../images/java.svg" width=128 /></p>
 
-># **Java**
+># **Ambiente de Desenvolvimento Java**
 
 Java é uma linguagem de programação orientada a objetos desenvolvida na década de 90 pela empresa Sun Microsystems. Diferente das linguagens de programação modernas, que são compiladas para código nativo, Java é compilada para um bytecode que é interpretado por uma máquina virtual (Java Virtual Machine, abreviada JVM).
 
-> ## Instalação no Linux
+> ## Instalação no Linux Ubuntu
 
 <div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
-Para que as instruções a seguir funcionem corretamente é necessário que as Variáveis de Ambiente do Projeto tenham sido configuradas.
+Para que as instruções a seguir funcionem corretamente é necessário que as <a href="../common/env.md">Variáveis de Ambiente</a> do Projeto tenham sido configuradas.
 </div>
 
-> Configuração das [Variáveis de Ambiente](../common/env.md) do Projeto.
+Instale o OpenJDK no sistema.
 
-Edite o arquivo **~/.devrc** e acrescente ao final:
+```bash
+sudo apt update
+sudo apt install -y openjdk-17-jdk
+```
+
+Defina o valor da  variável de ambiente `JAVA_HOME`. Para obter o local de instalação do Java, execute o comando abaixo e copie o texto exibido na tela.
+```bash
+dirname $(dirname $(readlink -f $(which java)))
+
+# Example: /usr/lib/jvm/java-17-openjdk-amd64
+```
+
+Edite o arquivo **~/.devrc** e acrescente:
 
 ```bash
 # Java SDK
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-export PATH="/usr/lib/jvm/java-11-openjdk-amd64:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+export PATH="$PATH:$JAVA_HOME"
 ```
 
 Ao concluir a edição do arquivo **~/.devrc** execute os comandos:
 ```bash
-source ~/.bashrc
+source ~/.devrc
 
-sudo apt install -y default-jre default-jdk
+java -version
 ```
-

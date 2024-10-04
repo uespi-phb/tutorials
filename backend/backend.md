@@ -46,13 +46,9 @@ O ambiente backend é uma parte essencial de qualquer sistema moderno. Ele garan
 
 Esse entendimento é fundamental para qualquer desenvolvedor, tanto aqueles que trabalham diretamente no backend quanto aqueles que desenvolvem o frontend, para que possam criar aplicações robustas e eficientes em qualquer ambiente de desenvolvimento.
 
-## **Configuração do Ambiente de Desenvolvimento Backend**
+## Configuração de Ambientes Backend
 
-<div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
-Todos os procedimentos de configuração dependem das variáveis definidas em <a href="../common/env.md">Variáveis de Ambiente</a>.
-</div>
-
-- [Ambiente Node.JS com TypeScript](./backend-ts.md)
+- [Ambiente Node.js com TypeScript](./backend-ts.md)
 
 ---
 [Próximo: Ambiente Node.js com TypeScript](./backend-ts.md) | [Anterior: Configurações Gerais](../README.md)

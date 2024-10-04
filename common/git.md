@@ -32,35 +32,35 @@ Os procedimentos de configuração do Git descritos a seguir são locais, isto �
 Os caminhos (paths) para a pasta raiz de projetos e das ferramentas de desenvolvimento estão definidos nas variáveis de ambiente descritas abaixo ([Variáveis de Ambiente](../common/env.md)):
 
 ```bash
-# Pasta base das ferramentas de desenvolvimento 
+# Development tools home 
 # (Node, Java, JavaScript, Dart, Flutter, Android Studio, etc)
 DEV_APPS     
-# Pasta base dos seus projetos
+# Projects home
 DEV_ROOT     
 ```
 
 Agora vamos configurar o Git para um projeto específico chamado `myproject` (você pode usar o nome que desejar):
 ```bash
-# Criar pasta do projeto
+# Create sample project folder
 mkdir -p $DEV_ROOT/myproject
-# Entrar na pasta do projeto
+# Enter project folder
 cd $DEV_ROOT/myproject
 
-# Definir "main" como nome da branch principal
+# Define "main" as main branch globally
 git config --global init.defaultBranch main
-# Criar repositório Git
+# Create git repository
 git init
-# Definir o VSCode como editor padrão do Git
+# Set vscode as default git editor
 git config --local core.editor "code --wait"
-# Abrir no VSCode as configurações do Git
+# Open Git settings
 git config --local --edit
 ```
 
 Edite o conteúdo do arquivo de configuração do Git. Este arquivo será gravado em **.git/config**:
 ```ini
 [user]
-	name = John Doe         # Seu nome
-	email = john@email.com  # Seu email no Github
+	name = John Doe         # Your namr
+	email = john@email.com  # Your email on GitHub
 [core]
 	editor = code --wait
 [push]
@@ -375,29 +375,29 @@ Teste se o o procedimento acima está realmente bloqueando _commits_ inválidos:
 ```bash
 cd $DEV_ROOT
 
-# Cria um arquivo de teste no repositório
+# Creates a test file in the repository
 touch file.txt
 git add .
 
-# Erro: mensagem sem tipo
+# Error: message without a type
 git commit -m 'add axios package'
 
-# Erro: mensagem curta
+# Error: short message
 git commit -m 'chore: axios'
 
-# Erro: mensagem terminada com "."
+# Error: message ending with "."
 git commit -m 'chore: add axios package.'
 
-# Erro: mensagem iniciada com letra maiuscula
+# Error: message starting with an uppercase letter
 git commit -m 'chore: Add axios package'
 
-# Mensagem correta
+# Correct message
 git commit -m 'chore: add axios package'
 
-# Desfaz o último commit para não poluir o repositório
+# Undo the last commit to keep the repository clean
 git reset --hard
 
-# Remover o arquivo de teste
+# Remove the test file
 rm file.txt
 ```
 

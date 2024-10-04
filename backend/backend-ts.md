@@ -52,6 +52,11 @@ O **TypeScript** é uma linguagem de programação de código aberto desenvolvid
 
 ## Configuração de um Ambiente de Desenvolvimento TypeScript no Linux
 
+<div style="color: black; background-color: lightgrey; margin: 10px 5px; vertical-align: middle; padding:10px 10px 10px 20px; border-radius: 2px; border-left: 5px solid darkorange">
+ATENÇÃO: todos os procedimentos de configuração dependem das variáveis definidas em <a href="../common/env.md">Variáveis de Ambiente</a>.
+</div>
+
+
 ### 1. Instalação do Node.js, NPM e NVM
 
 O TypeScript (TS) é compilado para JavaScript (JS) em um processo conhecido como transpilação. Para se executar código JS fora do navegador, em um ambiente backend por exemplo, é necessário ter instalado no sistema um ambiente de execução JS, como o Node.js.
@@ -93,7 +98,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 nvm -v
 ```
-> **Nota**: A versão do NVM (`v0.40.1` neste exemplo ) pode mudar conforme novas versões sejam lançadas. Você pode sempre verificar a versão mais recente no [repositório do NVM no GitHub](https://github.com/nvm-sh/nvm).
+> **Nota**: A versão do NVM (`v0.40.1` neste exemplo ) pode mudar conforme novas versões sejam lançadas. Você sempre pode verificar a versão mais recente no [repositório do NVM no GitHub](https://github.com/nvm-sh/nvm).
 
 Se o comando `nvm -v` retornar um número de versão, isso significa que o NVM foi instalado com sucesso.
 
@@ -165,11 +170,11 @@ Neste tutorial optaremos pela **instalação local** do TypeScript.
 Instalar o TS localmente significa que ele será configurado como um pacote de um projeto específico. Desta forma, antes mais nada precisamos criar um novo projeto no Node.js e configurá-lo utilizando o NPM.
 
 ```bash
-# Criar pasta raiz do projeto
+# Create the root project folder
 mkdir $DEV_ROOT/myproject
-# Mudar para a pasta do projeto
+# Change to the project folder
 cd $DEV_ROOT/myproject
-# Criar um novo projeto Node.js
+# Create a new Node.js project inside folder
 npm init -y
 ```
 
@@ -178,7 +183,7 @@ O comando `npm init` cria um novo projeto gravando suas configurações no arqui
 Desta forma, não é desejável que a pasta `node_modules` seja incluída em nosso repositório Git. Para evitar isso devemos instruir o Git para ignorar esta pasta criando o arquivo `.gitignore`.
 
 ```bash
-# Cria o arquivo .gitignore na raiz do projeto
+# Create .gitignore file in project root
 echo -e 'node_modules\n' > .gitignore
 ```
 
@@ -243,25 +248,56 @@ Porém, vamos criar um arquivo de configuração inicial personalizado onde irem
 ```json
 {
   "compilerOptions": {
-    // Versão alvo do JS (ES2022).
     "target": "es2022",
-    // Diretório de destina dos arquivos TS transpilados.
     "outDir": "./dist",
-    // Diretório raiz dos arquivos TS do projeto
     "rootDir": "./src",
-    // Ignora a verificação de tipos nos arquivos de definição de bibliotecas.
     "skipLibCheck": true,
-    // Habilita a geração de mapas de origem para depuração (debugging).
     "sourceMap": true,
-    // Verifica consistência no uso de maiúsculas/minúsculas nos nomes de arquivos.
     "forceConsistentCasingInFileNames": true
   },
-  // Define os arquivos/folders a serem compilados (neste caso, o diretório ./src).
   "include": [
     "./src"
   ]
 }
 ```
+Aqui está uma explicação sucinta de cada uma das opções do arquivo **`tsconfig.json`** fornecido:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "./src"
+  ]
+}
+```
+
+- **`target`**: `"es2022"`
+  Define a versão do ECMAScript (JavaScript) para a qual o TypeScript irá transpilar o código. O valor `es2022` especifica que o código deve ser convertido para a versão ECMAScript 2022. Dependendo da versão, o código será convertido para suportar funcionalidades mais antigas ou mais modernas do JavaScript.
+
+- **`outDir`**: `"./dist"`
+  Especifica o diretório de saída para os arquivos compilados (JavaScript). Neste caso, os arquivos transpilados irão para a pasta **`./dist`**.
+
+- **`rootDir`**: `"./src"`
+  Define o diretório raiz dos arquivos de entrada (TypeScript). O TypeScript irá considerar `./src` como a pasta raiz que contém os arquivos TypeScript que serão transpilados. É útil para garantir que a estrutura do diretório seja mantida na saída.
+
+- **`skipLibCheck`**: `true`
+  Ignora a verificação de tipo nos arquivos de declaração de biblioteca. Definido como `true` para acelerar a compilação, ignorando a verificação de tipos em arquivos externos de bibliotecas, que geralmente já estão bem testados.
+
+- **`sourceMap`**: `true`
+  - Gera arquivos **source map** ao compilar o TypeScript. Esses arquivos permitem que ferramentas de depuração (como navegadores) mapeiem o código compilado de volta ao código-fonte TypeScript original.
+
+- **`forceConsistentCasingInFileNames`**: `true`
+  - Garante que a diferenciação de maiúsculas e minúsculas em nomes de arquivos seja consistente entre diferentes sistemas operacionais.
+  
+- **`include`**: `["./src"]`
+  - Especifica quais arquivos e diretórios devem ser incluídos no processo de compilação. Neste caso, apenas arquivos dentro da pasta **`./src`** serão compilados.
 
 Por ser um ambiente de linha de comando, muitas vezes é necessário digitar comandos complexos para executar determinadas tarefas. Para facilitar esta tarefa é bastante comum criarmos _scripts_ no arquivo `package.json`. 
 
@@ -287,7 +323,7 @@ Vamos criar um _script_ chamado "_build_" para realizar a compilação do nosso 
 }
 ```
 
-Também vamos criar o arquivo principal de nosso projeto que tipicamente, mas não obrigatoriamente, se chama `index.ts`. Em seguida executaremos o _script_.
+Também vamos criar o arquivo principal de nosso projeto que tipicamente (mas não obrigatoriamente) se chama `index.ts`. Em seguida executaremos o _script_.
 
 ```bash
 mkdir ./src
@@ -323,15 +359,10 @@ Nesta seção iremos configurar o TS para suportar a importação de módulos JS
     "skipLibCheck": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
-    // Define o sistema de módulos como o padrão do Node.js
     "module": "commonjs",
-    // Utiliza o modo de resolução de módulos padrão do Node.js
     "moduleResolution": "node",
-    // Habilita a interoperabilidade entre CommonJS e ES Module
     "esModuleInterop": true,
-    // Define o diretório base para a resolução de módulos relativos
     "baseUrl": "./src",
-    // Permite que "@/" e "@/tests" sejam apelidos para as pastas "src/" e "../tests"
     "paths": {
       "@/*": [
         "*"
@@ -347,9 +378,28 @@ Nesta seção iremos configurar o TS para suportar a importação de módulos JS
   ]
 }
 ```
-Observe que foi acrescentada a pasta `./tests` na configuração o que fará o TS compilar os arquivos de teste para a pasta `./dist`. Porém, os arquivos de teste só são utilizados durante o desenvolvimento do projeto, isto é, não são necessários para o código de produção. 
+- **`module`: `"commonjs"`**
+   Define o sistema de módulos a ser usado no código transpilado. O `commonjs` é o padrão usado pelo Node.js e é amplamente suportado em módulos JavaScript. Isso permite usar `require` e `module.exports` no código gerado, em vez de `import` e `export`.
 
-Para evitar que os arquivos de testes sejam compilados juntos com o código de produção, criaremos uma configuração específica para a construção do apenas do código de produção no arquivo `tsconfig.build.json`:
+- **`moduleResolution`: `"node"`**
+    Especifica como o TypeScript resolve os módulos importados. A opção `node` define o usa da estratégia de resolução de módulos do Node.js, procurando pacotes primeiro no diretório local, depois na pasta `node_modules`.
+
+- **`esModuleInterop`: `true`**
+   - Facilita a interoperabilidade entre módulos ECMAScript e CommonJS. Com `esModuleInterop`habilitado, o TypeScript permite usar sintaxe de `import` de estilo ES6 para pacotes que utilizam o padrão CommonJS, como o `require`. Isso evita erros ao usar bibliotecas comuns do Node.js com a sintaxe moderna de módulos.
+
+- **`baseUrl`: `"./src"`**
+   Define o diretório base para resolver módulos relativos. A opção `./src` significa que o TypeScript tratará o diretório `src` como o ponto de partida ao resolver importações relativas no projeto, facilitando o uso de caminhos mais curtos.
+
+- **`paths`:**
+   Especifica atalhos (_aliases_) para caminhos de importação, tornando o código mais organizado e legível.
+   - `"@/*": ["*"]`: Define um _alias_ `"@/"` que corresponde ao diretório raiz do `src`. Isso permite que você use `@/` para referenciar arquivos dentro da pasta `src`.
+   - `"@/tests/*": ["../tests/*"]`: Define um alias para arquivos de teste, permitindo que você importe arquivos da pasta `tests` usando o atalho `@/tests/` ao invés de caminhos relativos longos.
+
+Essas configurações otimizam a maneira como o TypeScript trata módulos, dependências e importações, proporcionando flexibilidade e organização no código.
+
+Observe que foi acrescentada a pasta `./tests` na configuração, o que fará o TS compilar os arquivos de teste para a pasta `./dist`. Porém, os arquivos de teste só são utilizados durante o desenvolvimento do projeto, isto é, não são necessários para o código de produção. 
+
+Para evitar que os arquivos de testes sejam compilados juntos com o código de produção, criaremos uma configuração específica para a construção apenas do código de produção. Para isso, criaremos o arquivo `tsconfig.build.json`:
 ```json
 {
   "extends": "./tsconfig.json",
@@ -358,7 +408,7 @@ Para evitar que os arquivos de testes sejam compilados juntos com o código de p
   ]
 }
 ```
-Agora devemos atualizar nosso _script_ `build` para utuilizar este arquivo de configuração:
+Agora devemos atualizar nosso _script_ `build` para utilizar este arquivo de configuração:
 ```json
 {
   // ...
@@ -393,7 +443,7 @@ Quando ativado (`"strict": true` no `tsconfig.json`), são habilitada as seguint
 
 O **strict mode** impõe verificações mais rígidas de tipos, tornando o código mais seguro e menos propenso a erros, mas também exige mais precisão do desenvolvedor na declaração e uso de tipos.
 
-Acrescente a linha `"strict": true` ao arquivo `jsconfig.json`. A versão final deverá ser similar à apresentada abaixo:
+Acrescente a linha `"strict": true` ao arquivo `jsconfig.json`. A versão final do arquivo de configuração do TS deverá ser similar à apresentada abaixo:
 
 ```json
 {
@@ -540,7 +590,7 @@ Para instalar o Jest no projeto execute o seguinte comando:
 npm install -D jest @types/jest ts-jest ts-node babel-jest @babel/core @babel/preset-env
 ```
 
-Em seguinte crie ou atualize os seguintes arquivos do`projeto.
+Em seguinda crie ou atualize os seguintes arquivos do projeto:
 **`jest.config.ts`**
 ```ts
 import type { Config } from 'jest'
@@ -630,17 +680,20 @@ Agora é necessário garantir que sempre que for feito um _commit_ no projeto, o
 
 Para isto é necessário definir um script de _hook_ do Git, executando os seguintes comandos:
 ```bash
-# Script a ser executado antes de cada commit
+# Script to be executed before each commit
 cat << EOF > .git/hooks/pre-commit
 #!/bin/bash
 npx lint-staged
 EOF
 chmod +x .git/hooks/pre-commit
 
-# Script a ser executado antes de cada push
+# Script to be executed before each push
 cat << EOF > .git/hooks/pre-push
 #!/bin/bash
 npm run test:coverage
 EOF
 chmod +x .git/hooks/pre-push
 ```
+
+---
+[Anterior: Variáveis de Ambiente](./backend-ts.md)
