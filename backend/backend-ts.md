@@ -262,22 +262,6 @@ Porém, vamos criar um arquivo de configuração inicial personalizado onde irem
 ```
 Aqui está uma explicação sucinta de cada uma das opções do arquivo **`tsconfig.json`** fornecido:
 
-```json
-{
-  "compilerOptions": {
-    "target": "es2022",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-    "./src"
-  ]
-}
-```
-
 - **`target`**: `"es2022"`
   Define a versão do ECMAScript (JavaScript) para a qual o TypeScript irá transpilar o código. O valor `es2022` especifica que o código deve ser convertido para a versão ECMAScript 2022. Dependendo da versão, o código será convertido para suportar funcionalidades mais antigas ou mais modernas do JavaScript.
 
