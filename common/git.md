@@ -71,7 +71,7 @@ Edite o conteúdo do arquivo de configuração do Git. Este arquivo será gravad
 	s = !git status -s
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
 	t = !sh -c 'git tag -a $1 -m $1' -
-	ammend = !git add --all && git commit --amend --no-edit
+	amend = !git add --all && git commit --amend --no-edit -m
 	undo = !git reset HEAD~
 ```
 
