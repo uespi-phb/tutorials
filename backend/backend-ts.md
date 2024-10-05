@@ -85,14 +85,13 @@ Crie a variável de ambiente que define o local de instalação do NVM acrescent
 export NVM_DIR="$DEV_APPS/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Put NVM_DIR in PATH if not already
-[[ ":$PATH:" != *":$NVM_DIR:"* ]] && export PATH="${PATH}:$NVM_DIR"
+# Put NVM_DIR in PATH
+export PATH="${PATH}:$NVM_DIR"
 ```
 
 Atualize o ambiente, instale o NVM no local especificado ($NVM_DIR) e teste sua instalação:
 ```bash
-source ~/.bashrc
+source ~/.devrc
 mkdir $NVM_DIR
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
