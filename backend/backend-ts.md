@@ -243,8 +243,8 @@ Vamos criar um arquivo de configuração inicial personalizado onde iremos defin
 {
   "compilerOptions": {
     "target": "es2022",
+    "rootDir": ".",
     "outDir": "./dist",
-    "rootDir": "./src",
     "skipLibCheck": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true
@@ -262,8 +262,8 @@ Aqui está uma explicação sucinta de cada uma das opções do arquivo **`tscon
 - **`outDir`**: `"./dist"`
   Especifica o diretório de saída para os arquivos compilados (JavaScript). Neste caso, os arquivos transpilados irão para a pasta **`./dist`**.
 
-- **`rootDir`**: `"./src"`
-  Define o diretório raiz dos arquivos de entrada (TypeScript). O TypeScript irá considerar `./src` como a pasta raiz que contém os arquivos TypeScript que serão transpilados. É útil para garantir que a estrutura do diretório seja mantida na saída.
+- **`rootDir`**: `"."`
+  Define o diretório raiz dos arquivos de entrada (TypeScript). O TypeScript irá considerar `.` como a pasta raiz que contém os arquivos TypeScript que serão transpilados. É útil para garantir que a estrutura do diretório seja mantida na saída.
 
 - **`skipLibCheck`**: `true`
   Ignora a verificação de tipo nos arquivos de declaração de biblioteca. Definido como `true` para acelerar a compilação, ignorando a verificação de tipos em arquivos externos de bibliotecas, que geralmente já estão bem testados.
@@ -332,8 +332,8 @@ Nesta seção iremos configurar o TS para suportar a importação de módulos JS
 {
   "compilerOptions": {
     "target": "es2022",
+    "rootDir": ".",
     "outDir": "./dist",
-    "rootDir": "./src",
     "skipLibCheck": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
@@ -342,12 +342,12 @@ Nesta seção iremos configurar o TS para suportar a importação de módulos JS
     "esModuleInterop": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "*"
-      ],
       "@/tests/*": [
-        "../tests/*"
-      ]
+        "./tests/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
   "include": [
@@ -450,8 +450,8 @@ Acrescente a linha `"strict": true` ao arquivo `jsconfig.json`. A versão final 
 {
   "compilerOptions": {
     "target": "es2022",
+    "rootDir": ".",
     "outDir": "./dist",
-    "rootDir": "./src",
     "skipLibCheck": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
@@ -461,16 +461,17 @@ Acrescente a linha `"strict": true` ao arquivo `jsconfig.json`. A versão final 
     "strict": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "*"
-      ],
       "@/tests/*": [
-        "../tests/*"
-      ]
+        "./tests/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
   "include": [
-    "./src"
+    "./src",
+    "./tests",
   ]
 }
 ```
@@ -514,19 +515,19 @@ export default [
     ]
   },
   {
-    name: "project/rules",
-    rules: {
-      "eol-last": ["error", "always"],
-      "semi": ["error", "never"]
-    }
-  },
-  {
     languageOptions: {
       globals: globals.node
     }
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    name: "project/rules",
+    rules: {
+      "eol-last": ["error", "always"],
+      "semi": ["error", "never"]
+    }
+  },
 ]
 ```
 
