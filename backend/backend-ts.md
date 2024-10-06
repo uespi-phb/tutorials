@@ -680,22 +680,23 @@ Em seguida crie o novo _script_ `test:staged` no `package.json`:
 
 Agora é necessário garantir que sempre que for feito um _commit_ no projeto, os testes sejam executados para garantir que nenhum código com erro seja integrado ao repositório.
 
-Para isto é necessário definir um script de _hook_ do Git, executando os seguintes comandos:
+Para isto é necessário definir um script de _hook_ do Git. Para isto crie os seguintes arquivos:
+
+`.git/hooks/pre-commit`
 ```bash
-# Script to be executed before each commit
-cat << EOF > .git/hooks/pre-commit
 #!/bin/bash
 npx lint-staged
-EOF
-chmod +x .git/hooks/pre-commit
-
-# Script to be executed before each push
-cat << EOF > .git/hooks/pre-push
-#!/bin/bash
-npm run test:coverage
-EOF
-chmod +x .git/hooks/pre-push
 ```
 
+`.git/hooks/pre-push`
+```bash
+#!/bin/bash
+npm run test:coverage
+```
+
+Em seguinda dê permissão de execução para estes _scripts_.
+```bash
+chmod +x .git/hooks/{pre-commit,pre-commit}
+```
 ---
 [Anterior: Variáveis de Ambiente](./backend-ts.md)
