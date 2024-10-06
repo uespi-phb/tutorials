@@ -588,7 +588,7 @@ O **Jest** é um **framework de testes automatizados** em JavaScript, desenvolvi
 
 Para instalar o Jest no projeto execute o seguinte comando:
 ```bash
-npm install -D jest @types/jest ts-jest ts-node babel-jest @babel/core @babel/preset-env
+npm install -D jest @types/jest ts-jest ts-node babel-jest @babel/core @babel/preset-env jest-mock-extended
 ```
 
 Em seguinda crie ou atualize os seguintes arquivos do projeto:
