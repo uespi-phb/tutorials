@@ -696,7 +696,7 @@ npm run test:coverage
 
 Em seguinda dê permissão de execução para estes _scripts_.
 ```bash
-chmod +x .git/hooks/{pre-commit,pre-commit}
+chmod +x .git/hooks/{pre-commit,pre-push}
 ```
 ---
 [Anterior: Variáveis de Ambiente](./backend-ts.md)
